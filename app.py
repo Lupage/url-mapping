@@ -23,7 +23,7 @@ def get_similarities():
 		for key, value in content_dictionary.items():
 			if val == value:
 				return key
-		return "key doesn't exist"
+		return key
 	result = list(map(get_key, data["To"]))
 
 #Dataframe creation
