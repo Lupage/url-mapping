@@ -49,11 +49,11 @@ st.markdown("""Find identical URLs in a website migration. This is useful when y
 
 Use this tool also as a content plagiarism checker across other domains. An App by Francis Angelo Reyes of [Lupage Digital](https://www.lupagedigital.com/?utm_source=streamlit&utm_medium=referral&utm_campaign=urlmapping)
 
-To avoid errors, don't input media files (ex: .com/logo.jpg)""")
+To avoid errors, don't enter media files (ex: .com/logo.jpg)""")
 
-urls_1 = st.text_area("Enter 'From URLs' here. Maximum of 60 URLs. Input Full URLs (ex: https://currentdomain.com/current-page)", height=200)
+urls_1 = st.text_area("Enter 'From URLs' here. Maximum of 60 URLs. Enter full URLs (ex: https://currentdomain.com/current-page)", height=200)
 urls_1 = urls_1.split()
-urls_2 = st.text_area("Enter 'To URLs' here. Maximum of 60 URLs. Input Full URLs (ex: https://newdomain.com/new-page)", height=200)
+urls_2 = st.text_area("Enter 'To URLs' here. Maximum of 60 URLs. Enter full URLs (ex: https://newdomain.com/new-page)", height=200)
 urls_2 = urls_2.split()
 submit_button = st.button(label='Get Identical URLs')
 
