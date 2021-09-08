@@ -48,7 +48,7 @@ st.set_page_config(layout="wide", page_title="URL Mapping Tool")
 st.title("***URL Mapping Tool***", anchor=None)
 st.markdown("""Find identical URLs in a website migration. This is useful when you need to map out the pages from 'current' or 'old' domain to the 'new' domain.
 
-Use this tool as a content quick plagiarism checker as well. An App by Francis Angelo Reyes of [Lupage Digital](https://www.lupagedigital.com/?utm_source=streamlit&utm_medium=referral&utm_campaign=urlmapping)""")
+Use this tool as a content plagiarism checker as well. An App by Francis Angelo Reyes of [Lupage Digital](https://www.lupagedigital.com/?utm_source=streamlit&utm_medium=referral&utm_campaign=urlmapping)""")
 
 urls_1 = st.text_area("Add 'From URLs' here. Maximum of 100 URLs. Input Full URLs (ex. https://currentdomain.com/current-page)", height=200)
 urls_1 = urls_1.split()
