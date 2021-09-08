@@ -51,15 +51,15 @@ Use this tool also as a content plagiarism checker across other domains. An App 
 
 To avoid errors, don't input media files (ex: .com/logo.jpg)""")
 
-urls_1 = st.text_area("Add 'From URLs' here. Maximum of 100 URLs. Input Full URLs (ex: https://currentdomain.com/current-page)", height=200)
+urls_1 = st.text_area("Enter 'From URLs' here. Maximum of 60 URLs. Input Full URLs (ex: https://currentdomain.com/current-page)", height=200)
 urls_1 = urls_1.split()
-urls_2 = st.text_area("Add 'To URLs' here. Maximum of 100 URLs. Input Full URLs (ex: https://newdomain.com/new-page)", height=200)
+urls_2 = st.text_area("Enter 'To URLs' here. Maximum of 60 URLs. Input Full URLs (ex: https://newdomain.com/new-page)", height=200)
 urls_2 = urls_2.split()
 submit_button = st.button(label='Get Identical URLs')
 
 if submit_button:
-	if len(urls_1) > 100 or len(urls_2) > 100:
-		st.warning("Upload a maximum of 100 URLs only for both fields.")
+	if len(urls_1) > 60 or len(urls_2) > 60:
+		st.warning("Upload a maximum of 60 URLs only for both fields.")
 	else:
 		df = get_similarities()
 		st.table(df)
