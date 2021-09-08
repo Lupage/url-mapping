@@ -4,7 +4,7 @@ import base64
 import pandas as pd
 import streamlit as st
 
-#Function start
+#Main function start
 def get_similarities():
 	content_list_1 = [Page(url).content() for url in urls_1]
 	content_list_2 = [Page(url).content() for url in urls_2]
@@ -15,7 +15,6 @@ def get_similarities():
 #Polyfuzz library start
 	model = PolyFuzz("TF-IDF")
 	model.match(content_list_1, content_list_2)
-
 	data = model.get_matches()
 
 #Map the content result to urls
@@ -41,7 +40,7 @@ def get_similarities():
 	df = df.reset_index(drop=True)
 	df.index = df.index + 1
 	return df
-#Function end
+#Main function end
 
 #Streamlit logic
 st.set_page_config(layout="wide", page_title="URL Mapping Tool")
