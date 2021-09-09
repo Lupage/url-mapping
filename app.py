@@ -17,7 +17,7 @@ def get_similarities():
 	model.match(content_list_1, content_list_2)
 	data = model.get_matches()
 
-#Map the content result to urls
+#Map the Polyfuzz content result to URLs
 	def get_key(val):
 		for key, value in content_dictionary.items():
 			if val == value:
@@ -34,7 +34,7 @@ def get_similarities():
 	page_title_to = [Page(element).page_title() for element in df["To URL"]]
 	df["Page Title of 'To URL'"] = page_title_to
 	df = df[["From URL", "Page Title of 'From URL'", "To URL", "Page Title of 'To URL'", "% Identical"]]
-	df = df.sort_values(["% Identical"], ascending =False)
+	df = df.sort_values(["% Identical"], ascending = False)
 	df["% Identical"] = [element*100 for element in df["% Identical"]]
 	df["% Identical"] = [str("{:.2f}".format(element))+"%" for element in df["% Identical"]]
 	df = df.reset_index(drop=True)
@@ -49,17 +49,19 @@ st.markdown("""Find identical URLs in a website migration. This is useful when y
 
 Use this tool also as a content plagiarism checker across other domains. An App by Francis Angelo Reyes of [Lupage Digital](https://www.lupagedigital.com/?utm_source=streamlit&utm_medium=referral&utm_campaign=urlmapping)
 
-To avoid errors, don't enter media files (ex: .com/logo.jpg)""")
+To avoid errors, don't enter media files (ex, .com/logo.jpg)""")
 
-urls_1 = st.text_area("Enter 'From URLs' here. Maximum of 60 URLs. Enter full URLs (ex: https://currentdomain.com/current-page)", height=200)
+urls_1 = st.text_area("Enter 'From URLs' here. Maximum of 60 URLs. Enter full URLs (ex, https://currentdomain.com/current-page)", height=200)
 urls_1 = urls_1.split()
-urls_2 = st.text_area("Enter 'To URLs' here. Maximum of 60 URLs. Enter full URLs (ex: https://newdomain.com/new-page)", height=200)
+urls_2 = st.text_area("Enter 'To URLs' here. Maximum of 60 URLs. Enter full URLs (ex, https://newdomain.com/new-page)", height=200)
 urls_2 = urls_2.split()
 submit_button = st.button(label='Get Identical URLs')
 
 if submit_button:
 	if len(urls_1) > 60 or len(urls_2) > 60:
 		st.warning("Upload a maximum of 60 URLs only for both fields.")
+	elif urls_1 == urls_2:
+		st.warning("URLs should not be 100% the same. Please try again.")
 	else:
 		df = get_similarities()
 		st.table(df)
