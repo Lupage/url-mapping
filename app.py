@@ -4,10 +4,22 @@ import base64
 import pandas as pd
 import streamlit as st
 
+#Function for getting content
+def get_content(url_argument):
+	page_source = requests.get(url_argument).text
+	strainer = SoupStrainer('p')
+	soup = BeautifulSoup(page_source, 'lxml', parse_only=strainer)
+	paragraph_list = [element.text for element in soup.find_all(strainer)]
+	content = " ".join(paragraph_list)
+	return content
+
 #Main function start
 def get_similarities():
-	content_list_1 = [Page(url).content() for url in urls_1]
-	content_list_2 = [Page(url).content() for url in urls_2]
+
+#Concurrency/threading
+	with concurrent.futures.ThreadPoolExecutor() as executor:
+		content_list_1 = list(executor.map(get_content, urls_1))
+		content_list_2 = list(executor.map(get_content, urls_2))
   
 #Create a dictionary for 2nd content list "url":"content"
 	content_dictionary = {urls_2[i]: content_list_2[i] for i in range(len(urls_2))}
