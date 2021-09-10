@@ -1,9 +1,10 @@
 from classes import Page
 from bs4 import BeautifulSoup, SoupStrainer
-from concurrent.futures import ThreadPoolExecutor
 from polyfuzz import PolyFuzz
 import base64
+import concurrent.futures
 import pandas as pd
+import requests
 import streamlit as st
 
 #Function for getting content
