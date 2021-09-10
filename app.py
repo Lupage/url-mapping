@@ -17,15 +17,15 @@ def get_content(url_argument):
 	return content
 
 #Main function start
-def get_similarities():
+def get_similarities(url_list_1, url_list_2):
 	
 #Concurrency/threading
 	with concurrent.futures.ThreadPoolExecutor() as executor:
-		content_list_1 = list(executor.map(get_content, urls_1))
-		content_list_2 = list(executor.map(get_content, urls_2))
+		content_list_1 = list(executor.map(get_content, url_list_1))
+		content_list_2 = list(executor.map(get_content, url_list_2))
   
 #Create a dictionary for 2nd content list "url":"content"
-	content_dictionary = {urls_2[i]: content_list_2[i] for i in range(len(urls_2))}
+	content_dictionary = {url_list_2[i]: content_list_2[i] for i in range(len(url_list_2))}
 
 #Polyfuzz library start
 	model = PolyFuzz("TF-IDF")
@@ -41,7 +41,7 @@ def get_similarities():
 	result = list(map(get_key, data["To"]))
 
 #Dataframe creation
-	to_zip = zip(urls_1, result, data["Similarity"])
+	to_zip = zip(url_list_1, result, data["Similarity"])
 	df = pd.DataFrame(to_zip)
 	df.columns = ["From URL", "To URL", "% Identical"]
 	page_title_from = [Page(element).page_title() for element in df["From URL"]]
