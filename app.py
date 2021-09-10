@@ -78,7 +78,7 @@ if submit_button:
 	elif urls_1 == urls_2:
 		st.warning("URLs should not be 100% the same. Please try again.")
 	else:
-		df = get_similarities()
+		df = get_similarities(urls_1, urls_2)
 		st.table(df)
 		csv = df.to_csv()
 		b64 = base64.b64encode(csv.encode()).decode()
