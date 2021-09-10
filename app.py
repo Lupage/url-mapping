@@ -1,4 +1,5 @@
 from classes import Page
+from bs4 import BeautifulSoup, SoupStrainer
 from concurrent.futures import ThreadPoolExecutor
 from polyfuzz import PolyFuzz
 import base64
@@ -16,7 +17,7 @@ def get_content(url_argument):
 
 #Main function start
 def get_similarities():
-
+	
 #Concurrency/threading
 	with concurrent.futures.ThreadPoolExecutor() as executor:
 		content_list_1 = list(executor.map(get_content, urls_1))
