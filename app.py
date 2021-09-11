@@ -40,7 +40,7 @@ def get_similarities(url_list_1, url_list_2):
 		return key
 	
 	with concurrent.futures.ThreadPoolExecutor() as executor:
-		result = list(map(get_key, data["To"]))
+		result = list(executor.map(get_key, data["To"]))
 
 #Dataframe creation
 	to_zip = zip(url_list_1, result, data["Similarity"])
