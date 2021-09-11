@@ -75,10 +75,12 @@ urls_2 = urls_2.split()
 submit_button = st.button(label='Get Identical URLs')
 
 if submit_button:
-	if len(urls_1) > 60 or len(urls_2) > 60:
-		st.warning("Upload a maximum of 60 URLs only for both fields.")
+	if len(urls_1) == 0 or len(urls_2) == 0:
+		st.warning("Please enter the URLs.")
 	elif urls_1 == urls_2:
 		st.warning("URLs should not be 100% the same. Please try again.")
+	elif len(urls_1) > 60 or len(urls_2) > 60:
+		st.warning("Upload a maximum of 60 URLs only in both fields.")
 	else:
 		df = get_similarities(urls_1, urls_2)
 		st.table(df)
