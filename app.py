@@ -45,11 +45,6 @@ def get_similarities(url_list_1, url_list_2):
 	to_zip = zip(url_list_1, result, data["Similarity"])
 	df = pd.DataFrame(to_zip)
 	df.columns = ["From URL", "To URL", "% Identical"]
-# 	page_title_from = [Page(element).page_title() for element in df["From URL"]]
-# 	df["Page Title of 'From URL'"] = page_title_from
-# 	page_title_to = [Page(element).page_title() for element in df["To URL"]]
-# 	df["Page Title of 'To URL'"] = page_title_to
-# 	df = df[["From URL", "Page Title of 'From URL'", "To URL", "Page Title of 'To URL'", "% Identical"]]
 	df = df.sort_values(["% Identical"], ascending = False)
 	df["% Identical"] = df["% Identical"].multiply(100).round(3).astype(str) + '%'
 	df = df.reset_index(drop=True)
