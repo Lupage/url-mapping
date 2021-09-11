@@ -18,14 +18,13 @@ def get_content(url_argument):
 
 #Main function start
 def get_similarities(url_list_1, url_list_2):
-	
 #Concurrency/threading
 	with concurrent.futures.ThreadPoolExecutor() as executor:
 		content_list_1 = list(executor.map(get_content, url_list_1))
 		content_list_2 = list(executor.map(get_content, url_list_2))
   
-#Create a dictionary for 2nd content list "url":"content"
-	content_dictionary = {url_list_2[i]: content_list_2[i] for i in range(len(url_list_2))}
+#Create a dictionary for 2nd content list "url":"content". This is for later map function
+	content_dictionary = dict(zip(url_list_2, content_list_2))
 
 #Polyfuzz library start
 	model = PolyFuzz("TF-IDF")
