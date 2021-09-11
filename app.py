@@ -51,7 +51,7 @@ def get_similarities(url_list_1, url_list_2):
 # 	df["Page Title of 'To URL'"] = page_title_to
 # 	df = df[["From URL", "Page Title of 'From URL'", "To URL", "Page Title of 'To URL'", "% Identical"]]
 	df = df.sort_values(["% Identical"], ascending = False)
-	df["% Identical"] = df["% Identical"].multiply(100).astype(str) + '%'
+	df["% Identical"] = df["% Identical"].multiply(100).round(2).astype(str) + '%'
 	df = df.reset_index(drop=True)
 	df.index = df.index + 1
 	return df
