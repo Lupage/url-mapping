@@ -54,17 +54,21 @@ def get_similarities(url_list_1, url_list_2):
 
 #Streamlit logic
 st.set_page_config(layout="wide", page_title="URL Mapping Tool")
-st.title("***URL Mapping Tool***", anchor=None)
+st.title("***URL Mapping Tool*** ***(An app by Francis Angelo Reyes of [Lupage Digital](https://www.lupagedigital.com/?utm_source=streamlit&utm_medium=referral&utm_campaign=urlmapping))***", anchor=None)
 st.markdown("""Find identical URLs in a website migration. This is useful when you need to map out the pages from 'current' or 'old' domain to the 'new' domain.
-
-Use this tool also as a content plagiarism checker across other domains. An App by Francis Angelo Reyes of [Lupage Digital](https://www.lupagedigital.com/?utm_source=streamlit&utm_medium=referral&utm_campaign=urlmapping)
-
+Use this tool also as a content plagiarism checker across other domains.\n
 To avoid errors, don't enter media files (ex, .com/logo.jpg)""")
 
-urls_1 = st.text_area("Enter 'From URLs' here. Maximum of 100 URLs. Enter full URLs (ex, https://currentdomain.com/current-page)", height=200)
-urls_1 = urls_1.split()
-urls_2 = st.text_area("Enter 'To URLs' here. Maximum of 100 URLs. Enter full URLs (ex, https://newdomain.com/new-page)", height=200)
-urls_2 = urls_2.split()
+column_one, column_two = st.columns(2)
+
+with column_one:
+	urls_1 = st.text_area("Enter 'From URLs' here. Maximum of 100 URLs. Enter full URLs (ex, https://currentdomain.com/current-page)", height=300)
+	urls_1 = urls_1.split()
+
+with column_two: 
+	urls_2 = st.text_area("Enter 'To URLs' here. Maximum of 100 URLs. Enter full URLs (ex, https://newdomain.com/new-page)", height=300)
+	urls_2 = urls_2.split()
+	
 submit_button = st.button(label='Get Identical URLs')
 
 if submit_button:
